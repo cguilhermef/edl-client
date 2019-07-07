@@ -30,7 +30,7 @@ edl-root {
   overflow-y: scroll;
 }
 .main__title {
-  color: mat-color($edl-client-accent, 600);
+  color: mat-color($edl-client-primary);
   display: flex;
   flex: 0 0 auto;
   font-family: $edl-secondary-font;
@@ -43,6 +43,8 @@ edl-root {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+  margin: 0 auto;
   padding: 32px;
+  max-width: 480px;
   width: 100%;
 }

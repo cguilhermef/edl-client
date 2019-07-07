@@ -2,6 +2,7 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
+
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -12,8 +13,9 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$edl-client-primary: mat-palette($mat-indigo, #1a237e, #534bae, #000051);
-$edl-client-accent: mat-palette($mat-lime, A800, #d2cd55, #6c6e00);
+//$edl-client-primary: mat-palette($mat-indigo, 500, A100, 900);
+$edl-client-primary: mat-palette($mat-lime, 900, 100, 900);
+$edl-client-accent: mat-palette($mat-purple);
 
 // The warn palette is optional (defaults to red).
 $edl-client-warn: mat-palette($mat-red);

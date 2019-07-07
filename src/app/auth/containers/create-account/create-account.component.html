@@ -1,9 +1,40 @@
 <h2 class="main__title">Criar conta</h2>
 <div class="main__content">
-  <form action="">
-    <mat-form-field appearance="fill" class="fullwidth">
-      <mat-label>Nome</mat-label>
-      <input matInput placeholder="Nome e sobrenome">
-    </mat-form-field>
-  </form>
+  <mat-card>
+<!--    <mat-card-title>Dados de cadastro</mat-card-title>-->
+    <form action="">
+      <mat-grid-list cols="1" rowHeight="81px">
+        <mat-grid-tile>
+          <mat-form-field appearance="fill" class="fullwidth">
+            <mat-label>Nome</mat-label>
+            <input matInput placeholder="Nome e sobrenome">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill" class="fullwidth">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Email">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="81px" gutterSize="16px">
+        <mat-grid-tile>
+          <mat-form-field appearance="fill" class="fullwidth">
+            <mat-label>Senha</mat-label>
+            <input matInput placeholder="Senha">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill" class="fullwidth">
+            <mat-label>Confirmar senha</mat-label>
+            <input matInput placeholder="Informe novamente">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+    <mat-card-actions align="end">
+      <button mat-button color="primary" [routerLink]="['/account', 'login']">Login</button>
+      <button mat-raised-button color="primary">Cadastrar</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

@@ -3,10 +3,11 @@
     <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/588.png " alt="" class="account__icon">
   </div>
   <div class="account__name">T97 Suporte</div>
+<!--  <img src="assets/equipe-de-lol.svg" alt="">-->
 </div>
 <mat-nav-list>
   <a routerLink="vacancies" mat-list-item>Vagas</a>
   <a href="" mat-list-item>Equipes</a>
   <a [routerLink]="['account', 'register']" mat-list-item>Criar conta</a>
-  <a href="" mat-list-item>Fazer login</a>
+  <a [routerLink]="['account', 'login']" mat-list-item>Fazer login</a>
 </mat-nav-list>
