@@ -1,0 +1,39 @@
+@import "src/scss/base/theme.scss";
+
+:host {
+  background-color: #fff;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  height: 100%;
+  width: 200px;
+}
+
+.account {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 16px;
+  width: 100%;
+}
+.account__icon-frame {
+  align-items: center;
+  border: 3px solid rgba(0, 0, 0, 0.38);
+  border-radius: 32px;
+  display: flex;
+  height: 64px;
+  justify-content: center;
+  overflow: hidden;
+  width: 64px;
+}
+.account__icon {
+  display: flex;
+  width: 100%;
+}
+.account__name {
+  color: mat-color($mat-lime, 900);
+  font-family: $edl-secondary-font;
+  margin-top: 8px;
+}
