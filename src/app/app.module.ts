@@ -10,6 +10,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducer as authReducer} from './auth/state/auth.reducer';
 import {environment} from '@env/environment';
 import {HttpClientModule} from '@angular/common/http';
+import {AccountService} from '@app/_services';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import {HttpClientModule} from '@angular/common/http';
       logOnly: environment.production
     }),
   ],
-  providers: [],
+  providers: [
+    AccountService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

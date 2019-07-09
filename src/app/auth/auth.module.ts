@@ -4,11 +4,14 @@ import {CreateAccountComponent, ForgotPasswordComponent, LoginComponent} from '.
 import {AuthRoutingModule} from './auth-routing.module';
 import {MatButtonModule, MatCardModule, MatGridListModule, MatIconModule, MatInputModule} from '@angular/material';
 import { RecoveryPasswordComponent } from './containers/recovery-password/recovery-password.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [CreateAccountComponent, LoginComponent, ForgotPasswordComponent, RecoveryPasswordComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
     MatGridListModule,

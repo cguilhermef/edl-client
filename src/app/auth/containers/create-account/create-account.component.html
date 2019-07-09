@@ -2,18 +2,18 @@
 <div class="main__content">
   <mat-card>
 <!--    <mat-card-title>Dados de cadastro</mat-card-title>-->
-    <form action="">
+    <form [formGroup]="form">
       <mat-grid-list cols="1" rowHeight="81px">
         <mat-grid-tile>
           <mat-form-field appearance="fill" class="fullwidth">
             <mat-label>Nome</mat-label>
-            <input matInput placeholder="Nome e sobrenome">
+            <input matInput placeholder="Nome e sobrenome" formControlName="name">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field appearance="fill" class="fullwidth">
             <mat-label>Email</mat-label>
-            <input type="email" matInput placeholder="Email">
+            <input type="email" matInput placeholder="Email" formControlName="email">
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
@@ -21,20 +21,24 @@
         <mat-grid-tile>
           <mat-form-field appearance="fill" class="fullwidth">
             <mat-label>Senha</mat-label>
-            <input matInput placeholder="Senha">
+            <input type="password" matInput placeholder="Senha" formControlName="password">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field appearance="fill" class="fullwidth">
             <mat-label>Confirmar senha</mat-label>
-            <input matInput placeholder="Informe novamente">
+            <input type="password" matInput placeholder="Informe novamente" formControlName="confirm">
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
     </form>
     <mat-card-actions align="end">
-      <button mat-button color="primary" [routerLink]="['/account', 'login']">Login</button>
-      <button mat-raised-button color="primary">Cadastrar</button>
+      <button mat-button
+              color="primary"
+              [routerLink]="['/account', 'login']">Login</button>
+      <button mat-raised-button
+              color="primary"
+              (click)="create()">Cadastrar</button>
     </mat-card-actions>
   </mat-card>
 </div>
