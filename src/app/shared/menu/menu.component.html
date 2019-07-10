@@ -1,13 +1,25 @@
 <div class="account">
-  <div class="account__icon-frame">
-    <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/588.png " alt="" class="account__icon">
-  </div>
-  <div class="account__name">T97 Suporte</div>
+  <ng-container *ngIf="isLogged">
+    <div class="account__icon-frame">
+      <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/588.png " alt="" class="account__icon">
+    </div>
+    <div class="account__name">T97 Suporte</div>
+  </ng-container>
 <!--  <img src="assets/equipe-de-lol.svg" alt="">-->
+  <ng-container *ngIf="!isLogged">
+    <div class="account__not-logged">
+      Usuário não autenticado!
+    </div>
+  </ng-container>
 </div>
 <mat-nav-list>
   <a routerLink="vacancies" mat-list-item>Vagas</a>
   <a href="" mat-list-item>Equipes</a>
   <a [routerLink]="['account', 'register']" mat-list-item>Criar conta</a>
-  <a [routerLink]="['account', 'login']" mat-list-item>Fazer login</a>
+  <a
+    *ngIf="!isLogged"
+    [routerLink]="['account', 'login']" mat-list-item>Fazer login</a>
+  <a
+    *ngIf="isLogged"
+    (click)="logout()" mat-list-item>Sair</a>
 </mat-nav-list>

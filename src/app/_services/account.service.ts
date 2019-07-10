@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {CreateAccount, CreateAccountResponse} from '@app/_models';
 import {Observable, throwError} from 'rxjs';
-import {endpoints} from '@app/shared';
+import {endpoints} from '@app/shared/endpoints';
 import {catchError, map} from 'rxjs/operators';
 
 @Injectable({
@@ -36,4 +36,6 @@ export class AccountService {
         catchError(error => throwError(error))
       );
   }
+
+
 }

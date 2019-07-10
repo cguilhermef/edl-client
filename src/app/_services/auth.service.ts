@@ -1,16 +1,21 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
+import {Observable, of, Subject, throwError} from 'rxjs';
 import { AuthenticatedUser, LoginResponse } from '../_models';
 import { catchError, map } from 'rxjs/operators';
-import { endpoints } from '../shared';
+import { endpoints } from '../shared/endpoints';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  isLogged: Subject<boolean> = new Subject();
+
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   login(identity: string, password: string): Observable<LoginResponse> {
@@ -22,6 +27,7 @@ export class AuthService {
         map((response: LoginResponse) => {
           const { user: user, access_token } = response;
           this.setUserCache(response);
+          this.isLogged.next(true);
           return response;
         }),
         catchError((response: HttpErrorResponse) => {
@@ -70,6 +76,11 @@ export class AuthService {
     );
   }
 
+  logout() {
+    this.isLogged.next(false);
+    this.setUserCache(null);
+    this.router.navigate(['/vacancies']);
+  }
   isAuthenticated(): boolean {
     return this.getUserCached() !== null;
   }
@@ -80,7 +91,7 @@ export class AuthService {
   }
 
   setUserCache(loginResponse: LoginResponse) {
-    if ( !loginResponse.access_token ) {
+    if ( loginResponse === null || !loginResponse.access_token ) {
       localStorage.removeItem('user');
       return;
     }

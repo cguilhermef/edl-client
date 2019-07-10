@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '@app/_services';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'edl-login',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private service: AuthService
   ) {
   }
@@ -30,7 +32,10 @@ export class LoginComponent implements OnInit {
     console.log(email, password);
     this.service.login(email, password)
       .subscribe(response => {
-        console.log(response);
+        if (!response.account_verified) {
+          this.router.navigate(['/account', 'link-account']);
+          return;
+        }
       });
   }
 

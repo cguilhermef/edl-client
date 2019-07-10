@@ -3,17 +3,22 @@ import {RouterModule, Routes} from '@angular/router';
 import {
   ActivateEmailComponent,
   CreateAccountComponent,
-  ForgotPasswordComponent,
+  ForgotPasswordComponent, LinkAccountComponent,
   LoginComponent,
   RecoveryPasswordComponent
 } from '@app/auth/containers';
-import {NonAuthenticatedGuard} from '@app/_guards';
+import {AuthenticatedGuard, NonAuthenticatedGuard} from '@app/_guards';
 
 const routes: Routes = [
   {
     path: 'activate',
     component: ActivateEmailComponent,
     canActivate: [NonAuthenticatedGuard]
+  },
+  {
+    path: 'link-account',
+    component: LinkAccountComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: 'register',

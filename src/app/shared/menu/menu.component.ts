@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@app/_services';
 
 @Component({
   selector: 'edl-menu',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  isLogged = false;
+
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    this.isLogged = this.authService.isAuthenticated();
+    this.authService.isLogged.subscribe(
+      isLogged => this.isLogged = isLogged
+    );
   }
 
+  logout() {
+    this.authService.logout();
+  }
 }
