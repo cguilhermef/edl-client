@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {CreateAccount, CreateAccountResponse} from '@app/_models';
 import {Observable, throwError} from 'rxjs';
@@ -12,19 +12,28 @@ export class AccountService {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   create(account: CreateAccount): Observable<any> {
-    const { name, email, password } = account;
+    const {name, email, password} = account;
     return this.http.post(
       endpoints.auth.register,
-      { name, email, password }
+      {name, email, password}
     ).pipe(
-      map( (response: CreateAccountResponse) => response),
+      map((response: CreateAccountResponse) => response),
       catchError((response: HttpErrorResponse) => {
-        const { errors } = response.error;
-        return throwError(errors[ 0 ].detail);
+        const {errors} = response.error;
+        return throwError(errors[0].detail);
       })
     );
+  }
+
+  confirmEmail(token: string): Observable<string> {
+    return this.http.get(`${endpoints.auth.activate}/${token}`)
+      .pipe(
+        map((response: string) => response),
+        catchError(error => throwError(error))
+      );
   }
 }

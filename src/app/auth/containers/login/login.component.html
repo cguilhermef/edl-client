@@ -1,25 +1,25 @@
 <h2 class="main__title">Login</h2>
 <div class="main__content">
   <mat-card>
-    <form action="">
+    <form [formGroup]="form">
       <mat-grid-list cols="1" rowHeight="81px">
         <mat-grid-tile>
           <mat-form-field appearance="fill" class="fullwidth">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Email">
+            <input matInput placeholder="Email" formControlName="email">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field appearance="fill" class="fullwidth">
             <mat-label>Senha</mat-label>
-            <input type="password" matInput placeholder="Senha">
+            <input type="password" matInput placeholder="Senha" formControlName="password">
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
     </form>
     <mat-card-actions align="end">
       <button mat-button [routerLink]="['/account', 'forgot-password']" color="primary">Esqueci minha senha</button>
-      <button mat-raised-button color="primary">Entrar</button>
+      <button mat-raised-button color="primary" (click)="login()">Entrar</button>
     </mat-card-actions>
   </mat-card>
 </div>

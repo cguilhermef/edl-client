@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {
+  ActivateEmailComponent,
   CreateAccountComponent,
   ForgotPasswordComponent,
   LoginComponent,
@@ -9,6 +10,11 @@ import {
 import {NonAuthenticatedGuard} from '@app/_guards';
 
 const routes: Routes = [
+  {
+    path: 'activate',
+    component: ActivateEmailComponent,
+    canActivate: [NonAuthenticatedGuard]
+  },
   {
     path: 'register',
     component: CreateAccountComponent,

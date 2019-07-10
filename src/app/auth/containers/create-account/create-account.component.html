@@ -1,7 +1,13 @@
-<h2 class="main__title">Criar conta</h2>
+<mat-progress-bar
+  class="progress-bar"
+  mode="indeterminate"
+  color="primary"
+  *ngIf="processing"></mat-progress-bar>
 <div class="main__content">
+  <h2 class="main__title">Criar conta</h2>
   <mat-card>
 <!--    <mat-card-title>Dados de cadastro</mat-card-title>-->
+
     <form [formGroup]="form">
       <mat-grid-list cols="1" rowHeight="81px">
         <mat-grid-tile>

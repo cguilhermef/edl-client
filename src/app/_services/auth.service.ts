@@ -13,18 +13,16 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
-  login(identity: string, password: string): Observable<AuthenticatedUser> {
+  login(identity: string, password: string): Observable<LoginResponse> {
     return this.http.post(endpoints.auth.login, {
-      data: {
-        type: 'login',
-        attributes: { email: identity, password }
-      }
+      email: identity,
+      password
     })
       .pipe(
         map((response: LoginResponse) => {
-          const { data: user, token } = response;
-          this.setUserCache({ ...user, token });
-          return { ...user, token };
+          const { user: user, access_token } = response;
+          this.setUserCache(response);
+          return response;
         }),
         catchError((response: HttpErrorResponse) => {
           const { errors } = response.error;
@@ -76,22 +74,22 @@ export class AuthService {
     return this.getUserCached() !== null;
   }
 
-  getUserCached(): AuthenticatedUser {
+  getUserCached(): LoginResponse {
     const user = JSON.parse(localStorage.getItem('user'));
     return user || null;
   }
 
-  setUserCache(user: AuthenticatedUser) {
-    if ( !user ) {
+  setUserCache(loginResponse: LoginResponse) {
+    if ( !loginResponse.access_token ) {
       localStorage.removeItem('user');
       return;
     }
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(loginResponse));
   }
 
   token(): string {
     const user = this.getUserCached();
-    return user ? user.token : null;
+    return user ? user.access_token : null;
   }
 
 }

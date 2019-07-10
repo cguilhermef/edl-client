@@ -25,7 +25,6 @@ edl-root {
 }
 
 .main {
-  padding: 32px;
   overflow: hidden;
   overflow-y: scroll;
 }
@@ -39,12 +38,22 @@ edl-root {
   margin: 0 0 32px;
 }
 .main__content {
-  //background-color: #fff;
+  align-content: center;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+  height: 100%;
+  justify-content: center;
   margin: 0 auto;
   padding: 32px;
   max-width: 480px;
   width: 100%;
+}
+
+.progress-bar {
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
 }

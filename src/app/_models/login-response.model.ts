@@ -1,6 +1,8 @@
 import { AuthenticatedUser } from './authenticated-user.model';
 
 export interface LoginResponse {
-  token: string;
-  data: AuthenticatedUser;
+  access_token: string;
+  email_verified: boolean;
+  account_verified: boolean;
+  user: AuthenticatedUser;
 }
