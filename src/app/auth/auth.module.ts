@@ -11,13 +11,20 @@ import {
   MatProgressBarModule, MatProgressSpinnerModule,
   MatSnackBarModule
 } from '@angular/material';
-import { RecoveryPasswordComponent } from './containers/recovery-password/recovery-password.component';
+import {RecoveryPasswordComponent} from './containers/recovery-password/recovery-password.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { ActivateEmailComponent } from './containers/activate-email/activate-email.component';
-import { LinkAccountComponent } from './containers/link-account/link-account.component';
+import {ActivateEmailComponent} from './containers/activate-email/activate-email.component';
+import {LinkAccountComponent} from './containers/link-account/link-account.component';
 
 @NgModule({
-  declarations: [CreateAccountComponent, LoginComponent, ForgotPasswordComponent, RecoveryPasswordComponent, ActivateEmailComponent, LinkAccountComponent],
+  declarations: [
+    CreateAccountComponent,
+    LoginComponent,
+    ForgotPasswordComponent,
+    RecoveryPasswordComponent,
+    ActivateEmailComponent,
+    LinkAccountComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,

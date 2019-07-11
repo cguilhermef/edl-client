@@ -39,14 +39,10 @@ export class AuthService {
   }
 
   forgot(identity: string): Observable<void> {
-    return this.http.post(endpoints.auth.forgot, {
-      data: {
-        type: 'forgot',
-        attributes: {
-          email: identity
-        }
-      }
-    }).pipe(
+    return this.http.post(
+      endpoints.auth.forgot, {
+        email: identity
+      }).pipe(
       map(response => {
         return;
       }),
@@ -57,22 +53,15 @@ export class AuthService {
     );
   }
 
-  /**
-   * TODO - dinamizar o languageId
-   */
   redefine(password: string, token: string): Observable<void> {
     return this.http.post(endpoints.auth.redefine, {
-      data: {
-        password,
-        token,
-        password_confirmation: password,
-        languageId: '1',
-      }
+      password,
+      token
     }).pipe(
       map(() => null),
       catchError((response: HttpErrorResponse) => {
         const {errors} = response.error;
-        return throwError(errors[0].detail);
+        return throwError(errors[0]);
       })
     );
   }

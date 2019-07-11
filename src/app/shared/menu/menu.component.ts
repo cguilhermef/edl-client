@@ -19,7 +19,9 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.isLogged = this.authService.isAuthenticated();
-    this.summoner = this.authService.getUserCached().summoner;
+    if (this.authService.getUserCached()) {
+      this.summoner = this.authService.getUserCached().summoner;
+    }
     this.authService.isLogged.subscribe(
       isLogged => {
         this.isLogged = isLogged;
