@@ -9,8 +9,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducer as authReducer} from './auth/state/auth.reducer';
 import {environment} from '@env/environment';
-import {HttpClientModule} from '@angular/common/http';
-import {AccountService} from '@app/_services';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AccountService, AuthInterceptorService, RiotService} from '@app/_services';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,13 @@ import {AccountService} from '@app/_services';
     }),
   ],
   providers: [
-    AccountService
+    AccountService,
+    RiotService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

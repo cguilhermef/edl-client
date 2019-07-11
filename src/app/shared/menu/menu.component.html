@@ -1,9 +1,9 @@
 <div class="account">
   <ng-container *ngIf="isLogged">
     <div class="account__icon-frame">
-      <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/588.png " alt="" class="account__icon">
+      <img [src]="urlIcon" alt="" class="account__icon">
     </div>
-    <div class="account__name">T97 Suporte</div>
+    <div class="account__name">{{ summoner.name }}</div>
   </ng-container>
 <!--  <img src="assets/equipe-de-lol.svg" alt="">-->
   <ng-container *ngIf="!isLogged">

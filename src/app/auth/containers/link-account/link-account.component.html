@@ -1,48 +1,42 @@
+<mat-progress-bar
+  class="progress-bar"
+  mode="indeterminate"
+  color="primary"
+  *ngIf="processing"></mat-progress-bar>
 <div class="main__content">
   <h2 class="main__title">Vincular conta</h2>
   <mat-card>
     <mat-card-content>
       Agora vamos vincular sua conta a um perfil válido no jogo. <br>
-      Abaixo, informe sou nome de invocador - aquele que as pessoas veem no jogo - para verificarmos se o perfil existe.
+      Abaixo, informe seu nome de invocador - aquele que as pessoas veem no jogo - para verificarmos se o perfil existe.
     </mat-card-content>
-    <form action="">
+    <form [formGroup]="form">
       <mat-grid-list cols="1" rowHeight="81px">
          <mat-grid-tile>
            <mat-form-field appearance="fill" class="fullwidth">
              <mat-label>Invocador</mat-label>
-             <input matInput placeholder="Nome de invocador">
+             <input matInput placeholder="Nome de invocador" formControlName="summoner">
            </mat-form-field>
          </mat-grid-tile>
       </mat-grid-list>
     </form>
-    <mat-card-actions align="end">
-      <button mat-raised-button color="primary">Vincular</button>
+    <mat-card-actions align="end" *ngIf="!iconId">
+      <button mat-raised-button
+              color="primary"
+              (click)="register()">Vincular</button>
     </mat-card-actions>
-<!--    <mat-card-content>-->
-<!--      <ng-container *ngIf="processing">-->
-<!--        <strong>Sorteando icone</strong>-->
-<!--        <mat-progress-spinner color="primary" diameter="32" mode="indeterminate"></mat-progress-spinner>-->
-<!--      </ng-container>-->
-<!--    </mat-card-content>-->
-    <!--    <form [formGroup]="form">-->
-    <!--      <mat-grid-list cols="1" rowHeight="81px">-->
-    <!--        <mat-grid-tile>-->
-    <!--          <mat-form-field appearance="fill" class="fullwidth">-->
-    <!--            <mat-label>Email</mat-label>-->
-    <!--            <input matInput placeholder="Email" formControlName="email">-->
-    <!--          </mat-form-field>-->
-    <!--        </mat-grid-tile>-->
-    <!--        <mat-grid-tile>-->
-    <!--          <mat-form-field appearance="fill" class="fullwidth">-->
-    <!--            <mat-label>Senha</mat-label>-->
-    <!--            <input type="password" matInput placeholder="Senha" formControlName="password">-->
-    <!--          </mat-form-field>-->
-    <!--        </mat-grid-tile>-->
-    <!--      </mat-grid-list>-->
-    <!--    </form>-->
-    <!--    <mat-card-actions align="end">-->
-    <!--      <button mat-button [routerLink]="['/account', 'forgot-password']" color="primary">Esqueci minha senha</button>-->
-    <!--      <button mat-raised-button color="primary" (click)="login()">Entrar</button>-->
-    <!--    </mat-card-actions>-->
+    <ng-container *ngIf="urlIcon">
+      <mat-card-content>
+        Agora, acesse sua conta no LoL e coloque o ícone abaixo como ícone da conta. Depois, clique em verificar
+      </mat-card-content>
+      <div class="profile-icon">
+        <img [src]="urlIcon" alt="" class="profile-icon__image">
+      </div>
+      <mat-card-actions align="end">
+        <button mat-raised-button
+                color="primary"
+                (click)="verify()">Verificar</button>
+      </mat-card-actions>
+    </ng-container>
   </mat-card>
 </div>

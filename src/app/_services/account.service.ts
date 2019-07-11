@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {CreateAccount, CreateAccountResponse} from '@app/_models';
-import {Observable, throwError} from 'rxjs';
+import {CreateAccount, CreateAccountResponse, RegisterSummonerResponse, Summoner} from '@app/_models';
+import {Observable, of, throwError} from 'rxjs';
 import {endpoints} from '@app/shared/endpoints';
 import {catchError, map} from 'rxjs/operators';
 
@@ -37,5 +37,24 @@ export class AccountService {
       );
   }
 
+  registerSummoner(summoner: string): Observable<RegisterSummonerResponse> {
+    return this.http.post(
+      endpoints.summoner.register,
+      {summoner}
+    ).pipe(
+      map((response: RegisterSummonerResponse) => response),
+      catchError(err => throwError(err))
+    );
+  }
+
+  verifySummoner(summoner: string, iconId: number): Observable<Summoner> {
+    return this.http.post(
+      endpoints.summoner.confirm,
+      {summoner, iconId}
+    ).pipe(
+      map((response: Summoner) => response),
+      catchError(err => throwError(err))
+    );
+  }
 
 }

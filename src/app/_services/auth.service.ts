@@ -1,9 +1,9 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import {Observable, of, Subject, throwError} from 'rxjs';
-import { AuthenticatedUser, LoginResponse } from '../_models';
-import { catchError, map } from 'rxjs/operators';
-import { endpoints } from '../shared/endpoints';
+import {AuthenticatedUser, LoginResponse, Summoner} from '../_models';
+import {catchError, map} from 'rxjs/operators';
+import {endpoints} from '../shared/endpoints';
 import {Router} from '@angular/router';
 
 @Injectable({
@@ -16,7 +16,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router
-  ) { }
+  ) {
+  }
 
   login(identity: string, password: string): Observable<LoginResponse> {
     return this.http.post(endpoints.auth.login, {
@@ -25,14 +26,14 @@ export class AuthService {
     })
       .pipe(
         map((response: LoginResponse) => {
-          const { user: user, access_token } = response;
+          const {user: user, access_token} = response;
           this.setUserCache(response);
           this.isLogged.next(true);
           return response;
         }),
         catchError((response: HttpErrorResponse) => {
-          const { errors } = response.error;
-          return throwError(errors[ 0 ].detail);
+          const {errors} = response.error;
+          return throwError(errors[0].detail);
         })
       );
   }
@@ -50,8 +51,8 @@ export class AuthService {
         return;
       }),
       catchError((response: HttpErrorResponse) => {
-        const { errors } = response.error;
-        return throwError(errors[ 0 ].detail);
+        const {errors} = response.error;
+        return throwError(errors[0].detail);
       })
     );
   }
@@ -70,8 +71,8 @@ export class AuthService {
     }).pipe(
       map(() => null),
       catchError((response: HttpErrorResponse) => {
-        const { errors } = response.error;
-        return throwError(errors[ 0 ].detail);
+        const {errors} = response.error;
+        return throwError(errors[0].detail);
       })
     );
   }
@@ -81,6 +82,7 @@ export class AuthService {
     this.setUserCache(null);
     this.router.navigate(['/vacancies']);
   }
+
   isAuthenticated(): boolean {
     return this.getUserCached() !== null;
   }
@@ -91,11 +93,24 @@ export class AuthService {
   }
 
   setUserCache(loginResponse: LoginResponse) {
-    if ( loginResponse === null || !loginResponse.access_token ) {
+    if (loginResponse === null || !loginResponse.access_token) {
       localStorage.removeItem('user');
       return;
     }
     localStorage.setItem('user', JSON.stringify(loginResponse));
+  }
+
+  setSummonerConfirmed() {
+    const cache = this.getUserCached();
+    cache.account_verified = true;
+    this.setUserCache(cache);
+  }
+
+  setSummoner(summoner: Summoner) {
+    const cache = this.getUserCached();
+    cache.summoner = summoner;
+    this.setUserCache(cache);
+    this.isLogged.next(true);
   }
 
   token(): string {

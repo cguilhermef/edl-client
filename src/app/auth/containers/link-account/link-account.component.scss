@@ -1,3 +1,20 @@
 :host {
   width: 100%;
 }
+
+.profile-icon {
+  border: 3px solid rgba(0, 0, 0, 0.38);
+  align-items: center;
+  border-radius: 64px;
+  display: flex;
+  height: 128px;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0 auto;
+  width: 128px;
+}
+.profile-icon__image {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
