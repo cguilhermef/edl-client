@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -10,7 +10,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducer as authReducer} from './auth/state/auth.reducer';
 import {environment} from '@env/environment';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {AccountService, AuthInterceptorService, RiotService} from '@app/_services';
+import {AccountService, AuthInterceptorService, RiotService, TeamsService} from '@app/_services';
+import {RankingsService} from '@app/_services/rankings.service';
+import {MatPaginatorIntl} from '@angular/material';
+import {getPtBrPaginator} from '@app/pt-br-paginator';
 
 @NgModule({
   declarations: [
@@ -33,12 +36,15 @@ import {AccountService, AuthInterceptorService, RiotService} from '@app/_service
   ],
   providers: [
     AccountService,
+    RankingsService,
     RiotService,
+    TeamsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
     },
+    { provide: MatPaginatorIntl, useValue: getPtBrPaginator() }
   ],
   bootstrap: [AppComponent]
 })

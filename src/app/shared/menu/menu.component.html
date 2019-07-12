@@ -13,8 +13,15 @@
 </div>
 <mat-nav-list>
   <a routerLink="vacancies" mat-list-item>Vagas</a>
-  <a href="" mat-list-item>Equipes</a>
-  <a [routerLink]="['account', 'register']" mat-list-item>Criar conta</a>
+  <a [routerLink]="['/teams']"
+     mat-list-item>Equipes</a>
+  <a *ngIf="isLogged"
+     [routerLink]="['/teams']"
+     [queryParams]="{'my_teams': true}"
+     mat-list-item>Minhas equipes</a>
+  <a *ngIf="!isLogged"
+     [routerLink]="['account', 'register']"
+     mat-list-item>Criar conta</a>
   <a
     *ngIf="!isLogged"
     [routerLink]="['account', 'login']" mat-list-item>Fazer login</a>

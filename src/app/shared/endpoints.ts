@@ -9,8 +9,14 @@ export const endpoints = {
     redefine: `${ api }/recovery`,
     register: `${ api }/register`
   },
+  rankings: {
+    list: `${ api }/rankings`
+  },
   summoner: {
     register: `${ api }/register-account`,
     confirm: `${ api }/confirm-account`
+  },
+  teams: {
+    list: `${ api }/teams`
   }
 };

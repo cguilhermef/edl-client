@@ -28,6 +28,13 @@ edl-root {
   overflow: hidden;
   overflow-y: scroll;
 }
+.main__header {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0 32px;
+}
 .main__title {
   color: mat-color($edl-client-primary);
   display: flex;
@@ -35,7 +42,7 @@ edl-root {
   font-family: $edl-secondary-font;
   font-size: 24px;
   font-weight: 500;
-  margin: 0 0 32px;
+  margin: 0;
 }
 .main__content {
   align-content: center;
@@ -48,6 +55,9 @@ edl-root {
   padding: 32px;
   max-width: 480px;
   width: 100%;
+}
+.main__content--large {
+  max-width: 720px;
 }
 
 .progress-bar {

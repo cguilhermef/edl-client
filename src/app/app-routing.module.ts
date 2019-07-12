@@ -8,6 +8,10 @@ const routes: Routes = [
     loadChildren: './auth/auth.module#AuthModule'
   },
   {
+    path: 'teams',
+    loadChildren: './teams/teams.module#TeamsModule'
+  },
+  {
     path: 'vacancies',
     loadChildren: './vacancies/vacancies.module#VacanciesModule'
   },

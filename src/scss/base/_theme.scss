@@ -28,4 +28,16 @@ $edl-client-theme: mat-light-theme($edl-client-primary, $edl-client-accent, $edl
 // that you are using.
 @include angular-material-theme($edl-client-theme);
 
+$custom-typography: mat-typography-config(
+  $font-family: Montserrat
+);
+
+$custom-button-typography: mat-typography-config(
+  $font-family: Montserrat,
+  $button:  mat-typography-level(14px, 14px, 500)
+);
+
+@include angular-material-typography($custom-typography);
+@include mat-button-typography($custom-button-typography);
+
 $edl-secondary-font: 'Alfa Slab One', cursive;
