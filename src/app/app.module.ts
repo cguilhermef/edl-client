@@ -10,7 +10,14 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {reducer as authReducer} from './auth/state/auth.reducer';
 import {environment} from '@env/environment';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {AccountService, AuthInterceptorService, RankingsService, RiotService, TeamsService} from '@app/_services';
+import {
+  AccountService,
+  AuthInterceptorService,
+  RankingsService,
+  RiotService,
+  TeamsService,
+  VacanciesService
+} from '@app/_services';
 import {MatPaginatorIntl} from '@angular/material';
 import {getPtBrPaginator} from '@app/pt-br-paginator';
 import {ResolversModule} from '@app/_services/resolvers/resolvers.module';
@@ -40,6 +47,7 @@ import {ResolversModule} from '@app/_services/resolvers/resolvers.module';
     RiotService,
     TeamsService,
     ResolversModule,
+    VacanciesService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

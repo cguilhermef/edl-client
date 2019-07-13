@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Role, Team, Vacancy} from '@app/_models';
 import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {RiotService} from '@app/_services';
+import {RiotService, VacanciesService} from '@app/_services';
 
 @Component({
   selector: 'edl-vacancies',
@@ -16,12 +16,12 @@ export class VacanciesComponent implements OnInit {
   form: FormGroup;
   roles: Role[];
   processing = false;
-  vacancies: Vacancy[];
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private riotService: RiotService
+    private riotService: RiotService,
+    private vacanciesService: VacanciesService
   ) {
   }
 
@@ -33,8 +33,17 @@ export class VacanciesComponent implements OnInit {
         this.item = data['item'];
         // tslint:disable-next-line:no-string-literal
         this.roles = data['roles'];
+        this.setupForm();
       }
     );
+  }
+
+  get vacancies(): Vacancy[] {
+    return this.item.vacancies || [];
+  }
+
+  set vacancies(vacancies: Vacancy[]) {
+    this.item.vacancies = vacancies;
   }
 
   roleImageBy(roleId: number): string {
@@ -46,8 +55,8 @@ export class VacanciesComponent implements OnInit {
   }
 
   availableRoles(): Role[] {
-    return this.roles.filter( r => {
-      return (this.vacancies ||[]).every(v => v.roleId !== r.id);
+    return this.roles.filter(r => {
+      return (this.vacancies || []).every(v => v.roleId !== r.id);
     });
   }
 
@@ -55,19 +64,32 @@ export class VacanciesComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.vacancies = [...(this.vacancies || []), this.form.value];
-    this.form.reset({});
-    this.form.get('roleId').setErrors(null);
-    console.log(this.vacancies);
+    this.form.disable();
+    this.processing = true;
+
+    this.vacanciesService.store(this.form.value)
+      .subscribe(vacancy => {
+        this.vacancies = [...(this.vacancies || []), vacancy];
+        this.form.enable();
+        this.form.reset({});
+        this.form.get('roleId').setErrors(null);
+        this.processing = false;
+      });
   }
 
-  remove(vacancieId: number) {
-    this.vacancies = this.vacancies.filter(v => v.id !== vacancieId);
+  remove(vacancy: Vacancy) {
+    this.processing = true;
+    this.vacanciesService.destroy(vacancy)
+      .subscribe(() => {
+        this.vacancies = this.vacancies.filter(v => v.id !== vacancy.id);
+        this.processing = false;
+      });
   }
 
   private setupForm() {
     this.form = this.fb.group({
-      roleId: this.fb.control('', Validators.required)
+      roleId: this.fb.control('', Validators.required),
+      teamId: this.fb.control(this.item ? this.item.id : null)
     });
   }
 }

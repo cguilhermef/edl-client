@@ -5,3 +5,4 @@ export * from './rankings.service';
 export * from './riot.service';
 export * from './teams.service';
 export * from './resolvers';
+export * from './vacancies.service';

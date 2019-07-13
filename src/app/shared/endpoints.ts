@@ -14,7 +14,7 @@ export const endpoints = {
     list: `${api}/rankings`
   },
   riot: {
-    roles: `${ api }/roles`
+    roles: `${api}/roles`
   },
   summoner: {
     register: `${api}/register-account`,
@@ -23,5 +23,9 @@ export const endpoints = {
   teams: {
     list: `${api}/teams`,
     byId: (teamId) => `${api}/teams/${teamId}`
+  },
+  vacancies: {
+    list: `${api}/vacancies`,
+    byId: (vacancyId) => `${api}/vacancies/${vacancyId}`
   }
 };

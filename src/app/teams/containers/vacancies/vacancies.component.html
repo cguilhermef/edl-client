@@ -30,7 +30,10 @@
         </mat-grid-tile>
       </mat-grid-list>
       <div class="form__buttons">
-        <button mat-raised-button color="primary" (click)="add()">Adicionar</button>
+        <button mat-raised-button
+                [disabled]="processing"
+                color="primary"
+                (click)="add()">Adicionar</button>
       </div>
     </form>
     <table mat-table [dataSource]="vacancies">
@@ -51,7 +54,7 @@
         <td mat-cell *matCellDef="let element">
           <button mat-icon-button
                   color="warn"
-                  (click)="remove(element.id)">
+                  (click)="remove(element)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
