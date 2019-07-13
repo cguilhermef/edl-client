@@ -1,3 +1,29 @@
+@import "src/scss/base/theme";
+
+
 :host {
   width: 100%;
+}
+table {
+  width: 100%;
+}
+
+
+.role-name {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+
+  .name {
+    color: mat-color($edl-client-primary);
+    font-weight: 500;
+    margin-left: 16px;
+  }
+}
+
+td.mat-column-role {
+  padding-left: 18px !important;
+}
+td.mat-column-actions {
+  text-align: right;
 }

@@ -68,6 +68,11 @@ edl-root {
   max-width: 720px;
 }
 
+.title-secondary {
+  color: mat-color($edl-client-primary);
+  font-size: 16px;
+  font-weight: 700;
+}
 .progress-bar {
   left: 0;
   position: absolute;
@@ -78,4 +83,11 @@ edl-root {
 
 .mat-tab-nav-bar + .form {
   margin-top: 16px;
+}
+
+.form__buttons {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }

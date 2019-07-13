@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Resolve} from '@angular/router';
 import {Observable} from 'rxjs';
 import {Role} from '@app/_models';
-import {RiotService} from '@app/_services';
+import {RiotService} from '../riot.service';
 
 @Injectable({
   providedIn: 'root'
