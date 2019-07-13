@@ -13,7 +13,7 @@
               color="primary">Criar equipe</button>
     </div>
   </div>
-  <mat-card>
+  <mat-card *ngIf="teamList?.data.length > 0">
     <table mat-table [dataSource]="teamList?.data">
       <!-- Sigla  -->
       <ng-container matColumnDef="abbreviation">
@@ -56,5 +56,14 @@
                    itemsPerPageLabel="Itens por página"
     (page)="reloadList($event)">
     </mat-paginator>
+  </mat-card>
+  <mat-card *ngIf="teamList?.data.length === 0">
+    <div class="empty-list">
+      <h3 class="empty-list__title">Nenhuma equipe cadastrada no momento!</h3>
+
+      <p class="empty-list__info">Mas você pode <a [routerLink]="['/teams', 'new']">criar</a> uma conta</p>
+      <p class="empty-list__info">Vincular ela à sua conta no League of Legends</p>
+      <p class="empty-list__info">E criar uma equipe e adicionar vagas à ela!</p>
+    </div>
   </mat-card>
 </div>

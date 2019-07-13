@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {AuthService} from '../auth.service';
 import {TeamsService} from '../teams.service';
 import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {ListResponse, Team} from '@app/_models';
 import {itensPerPage} from '@app/shared/constants';
 

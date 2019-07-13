@@ -16,14 +16,14 @@ export class VacancyListService implements Resolve<Observable<ListResponse<Vacan
   }
 
   resolve(): Observable<ListResponse<Vacancy[]>> {
-    return of({
-      data: [],
-      current_page: 1,
-      from: 0,
-      to: 0,
-      total: 0,
-      per_page: 5,
-    });
-    // return this.service.index(1, itensPerPage);
+    // return of({
+    //   data: [],
+    //   current_page: 1,
+    //   from: 0,
+    //   to: 0,
+    //   total: 0,
+    //   per_page: 5,
+    // });
+    return this.service.index(1, itensPerPage);
   }
 }

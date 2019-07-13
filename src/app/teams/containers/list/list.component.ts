@@ -41,13 +41,13 @@ export class ListComponent implements OnInit {
         this.teamList = data['items'];
       }
     );
-    this.route.queryParamMap.subscribe(
-      params => {
-        this.myTeams = params.get('my_teams') === 'true' ? true : false;
-        this.teamService.index(1, itensPerPage, this.myTeams ? this.user.id : null)
-          .subscribe(teams => this.teamList = teams);
-      }
-    );
+    // this.route.queryParamMap.subscribe(
+    //   params => {
+    //     this.myTeams = params.get('my_teams') === 'true' ? true : false;
+    //     this.teamService.index(1, itensPerPage, this.myTeams ? this.user.id : null)
+    //       .subscribe(teams => this.teamList = teams);
+    //   }
+    // );
   }
 
   createTeam() {
