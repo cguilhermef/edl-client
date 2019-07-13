@@ -71,7 +71,7 @@ export class VacanciesComponent implements OnInit {
       .subscribe(vacancy => {
         this.vacancies = [...(this.vacancies || []), vacancy];
         this.form.enable();
-        this.form.reset({});
+        this.form.reset({teamId: this.item.id});
         this.form.get('roleId').setErrors(null);
         this.processing = false;
       });
