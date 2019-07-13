@@ -20,7 +20,8 @@ const routes: Routes = [
     component: FormComponent,
     resolve: {
       item: TeamService,
-      rankings: RankingsListService
+      rankings: RankingsListService,
+      roles: RolesListService
     }
   },
   {

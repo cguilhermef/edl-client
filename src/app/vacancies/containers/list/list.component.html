@@ -1,1 +1,70 @@
-<p>list works!</p>
+<mat-progress-bar
+  class="progress-bar"
+  mode="indeterminate"
+  color="primary"
+  *ngIf="processing"></mat-progress-bar>
+<div class="main__content main__content--large">
+  <div class="main__header">
+    <h2 class="main__title">Vagas!</h2>
+<!--    <h2 class="main__title" *ngIf="!myTeams">Equipes</h2>-->
+<!--    <h2 class="main__title" *ngIf="myTeams">Minhas equipes</h2>-->
+  </div>
+  <mat-card>
+    <table mat-table [dataSource]="items?.data">
+      <!-- Position  -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>Função</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="role-name">
+            <img [src]="roleImageBy(element.roleId)" alt="" class="image">
+            <span class="name">{{ roleNameBy(element.roleId) }}</span>
+          </div>
+        </td>
+      </ng-container>
+      <!-- Equipe -->
+      <ng-container matColumnDef="team">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let element"> {{element.team.name }} </td>
+      </ng-container>
+
+      <!-- Ranking -->
+      <ng-container matColumnDef="initial_ranking">
+        <th mat-header-cell *matHeaderCellDef> Ranking mínimo </th>
+        <td mat-cell *matCellDef="let element">
+          {{element?.team?.initial_ranking?.name }}
+          {{element?.team?.initial_ranking?.rank }}
+        </td>
+      </ng-container>
+
+      <!-- Owner -->
+      <ng-container matColumnDef="owner">
+        <th mat-header-cell *matHeaderCellDef> Dono </th>
+        <td mat-cell *matCellDef="let element"> {{element?.team?.owner?.summoner?.name }} </td>
+      </ng-container>
+
+      <!-- Vagas -->
+      <ng-container matColumnDef="vacancies">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+<!--          <button *ngIf="element.owner !== user?.id"-->
+<!--                  [routerLink]="['/teams', element.id]"-->
+<!--                  mat-button-->
+<!--                  color="primary">Vagas</button>-->
+<!--          <button *ngIf="element.owner === user?.id"-->
+<!--                  (click)="editTeam(element.id)"-->
+<!--                  mat-button-->
+<!--                  color="primary">Editar</button>-->
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="items?.total"
+                   [pageSize]="items?.per_page"
+                   [pageSizeOptions]="[5, 10, 25, 100]"
+                   itemsPerPageLabel="Itens por página"
+                   (page)="reloadList($event)">
+    </mat-paginator>
+  </mat-card>
+</div>

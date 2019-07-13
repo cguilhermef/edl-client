@@ -1,12 +1,17 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ListComponent} from './containers/list';
+import {RolesListService, VacancyListService} from '@app/_services';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: ListComponent
+    component: ListComponent,
+    resolve: {
+      items: VacancyListService,
+      roles: RolesListService
+    }
   }
 ];
 
