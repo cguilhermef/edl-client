@@ -8,4 +8,6 @@ body { margin: 0; font-family: Montserrat, "Helvetica Neue", sans-serif; }
 @import "scss/base/structure";
 @import "scss/base/theme";
 
+@import "scss/components/empty-list";
+
 @import "scss/mdc";

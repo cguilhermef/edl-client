@@ -5,14 +5,14 @@
   *ngIf="processing"></mat-progress-bar>
 <div class="main__content main__content--large">
   <div class="main__header">
-    <ng-container *ngIf="authenticated">
+    <ng-container *ngIf="authenticated && accountConfirmed">
       <h2 class="main__title" *ngIf="editing">
         <div class="label">Editar equipe</div>
         <div class="value">{{ item.name }}</div>
       </h2>
       <h2 class="main__title" *ngIf="!editing">Criar equipe</h2>
     </ng-container>
-    <ng-container *ngIf="!authenticated">
+    <ng-container *ngIf="!authenticated || !accountConfirmed">
       <h2 class="main__title">
         <div class="label">Equipe</div>
         <div class="value">{{ item.name }}</div>
@@ -21,7 +21,7 @@
     </ng-container>
   </div>
   <mat-card>
-    <nav mat-tab-nav-bar *ngIf="authenticated">
+    <nav mat-tab-nav-bar *ngIf="authenticated && accountConfirmed">
       <a mat-tab-link [active]="true">Dados</a>
       <a mat-tab-link
          *ngIf="item?.id"
@@ -31,7 +31,7 @@
         Vagas
       </a>
     </nav>
-    <form [formGroup]="form" class="form" *ngIf="authenticated">
+    <form [formGroup]="form" class="form" *ngIf="authenticated && accountConfirmed">
       <mat-grid-list cols="1" rowHeight="81px">
         <mat-grid-tile>
           <mat-form-field appearance="fill" class="fullwidth">
@@ -57,12 +57,13 @@
         </mat-grid-tile>
       </mat-grid-list>
     </form>
-    <mat-card-actions align="end" *ngIf="authenticated">
+    <mat-card-actions align="end" *ngIf="authenticated && accountConfirmed">
       <button mat-button [routerLink]="['/teams']" color="primary">Cancelar</button>
       <button mat-raised-button color="primary" (click)="save()">Criar</button>
     </mat-card-actions>
-    <h4 class="title-secondary" *ngIf="!authenticated">Vagas</h4>
-    <table mat-table [dataSource]="item?.vacancies" *ngIf="!authenticated">
+    <h4 class="title-secondary" *ngIf="!authenticated || !accountConfirmed">Vagas</h4>
+
+    <table mat-table [dataSource]="item?.vacancies" *ngIf="!authenticated || !accountConfirmed">
       <!-- Posição  -->
       <ng-container matColumnDef="role">
         <th mat-header-cell *matHeaderCellDef>Posição</th>

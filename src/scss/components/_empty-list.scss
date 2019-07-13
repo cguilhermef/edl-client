@@ -1,0 +1,18 @@
+@import "src/scss/base/theme";
+
+.empty-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-list__title {
+  color: mat-color($edl-client-primary);
+  font-size: 16px;
+  font-weight: 500;
+}
+.empty-list__info {
+  margin-bottom: 0;
+}
+.empty-list__info + .empty-list__info {
+  margin-top: 8px;
+}

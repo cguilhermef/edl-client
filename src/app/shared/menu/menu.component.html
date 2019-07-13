@@ -1,5 +1,5 @@
 <div class="account">
-  <ng-container *ngIf="isLogged">
+  <ng-container *ngIf="isLogged && isConfirmed">
     <div class="account__icon-frame">
       <img [src]="urlIcon" alt="" class="account__icon">
     </div>
@@ -15,7 +15,7 @@
   <a routerLink="vacancies" mat-list-item>Vagas</a>
   <a [routerLink]="['/teams']"
      mat-list-item>Equipes</a>
-  <a *ngIf="isLogged"
+  <a *ngIf="isLogged && isConfirmed"
      [routerLink]="['/teams']"
      [queryParams]="{'my_teams': true}"
      mat-list-item>Minhas equipes</a>

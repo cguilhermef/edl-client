@@ -10,6 +10,7 @@ import {Summoner} from '@app/_models';
 export class MenuComponent implements OnInit {
 
   isLogged = false;
+  isConfirmed = false;
   summoner: Summoner;
 
   constructor(
@@ -19,13 +20,15 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.isLogged = this.authService.isAuthenticated();
+    this.isConfirmed = this.isLogged ? this.authService.getUserCached().account_verified : false;
     if (this.authService.getUserCached()) {
       this.summoner = this.authService.getUserCached().summoner;
     }
     this.authService.isLogged.subscribe(
       isLogged => {
         this.isLogged = isLogged;
-        this.summoner = this.authService.getUserCached().summoner;
+        this.isConfirmed = isLogged ? this.authService.getUserCached().account_verified : false;
+        this.summoner = isLogged ? this.authService.getUserCached().summoner : null;
       }
     );
   }

@@ -20,6 +20,7 @@ export class FormComponent implements OnInit {
   rankings: Ranking[];
   roles: Role[];
   authenticated = false;
+  accountConfirmed = false;
 
   constructor(
     private fb: FormBuilder,
@@ -35,9 +36,12 @@ export class FormComponent implements OnInit {
   ngOnInit() {
     this.setupFilter();
     this.authenticated = this.authService.isAuthenticated();
-
+    this.accountConfirmed = this.authenticated ? this.authService.getUserCached().account_verified : false;
     this.authService.isLogged.subscribe(
-      status => this.authenticated = status
+      status => {
+        this.authenticated = status;
+        this.accountConfirmed = this.authenticated ? this.authService.getUserCached().account_verified : false;
+      }
     );
     this.route.data
       .subscribe(data => {
