@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {ListResponse, Role, Vacancy} from '@app/_models';
 import {RiotService, VacanciesService} from '@app/_services';
 import {ActivatedRoute} from '@angular/router';
+import {PageEvent} from '@angular/material';
 
 @Component({
   selector: 'edl-list',
@@ -40,6 +41,14 @@ export class ListComponent implements OnInit {
 
   roleNameBy(roleId: number): string {
     return this.roles.find(r => r.id === roleId).name;
+  }
+
+  reloadList(event: PageEvent) {
+    this.processing = true;
+    this.service.index(event.pageIndex + 1, event.pageSize).subscribe(response => {
+      this.processing = false;
+      this.items = response;
+    });
   }
 
 }
