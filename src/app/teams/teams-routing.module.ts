@@ -15,7 +15,7 @@ const routes: Routes = [
     }
   },
   {
-    path: ':teamId/edit',
+    path: ':teamId',
     pathMatch: 'full',
     component: FormComponent,
     resolve: {

@@ -59,9 +59,8 @@ export class ListComponent implements OnInit {
   }
 
   editTeam(teamId: number) {
-    console.log(teamId);
     this.processing = true;
-    this.router.navigate(['/teams', teamId, 'edit'])
+    this.router.navigate(['/teams', teamId])
       .then(() => {
         this.processing = false;
       });
