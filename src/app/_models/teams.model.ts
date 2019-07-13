@@ -6,5 +6,6 @@ export class Team {
   abbreviation: string;
   minRanking: number;
   owner: number;
-  initialRanking: Ranking;
+  // tslint:disable-next-line:variable-name
+  initial_ranking: Ranking;
 }

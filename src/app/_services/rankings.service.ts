@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, throwError} from 'rxjs';
 import {Ranking} from '@app/_models';
-import {endpoints} from '@app/shared';
+import {endpoints} from '@app/shared/endpoints';
 import {catchError, map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 

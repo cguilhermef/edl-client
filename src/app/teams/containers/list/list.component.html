@@ -5,9 +5,12 @@
   *ngIf="processing"></mat-progress-bar>
 <div class="main__content main__content--large">
   <div class="main__header">
-    <h2 class="main__title">Equipes</h2>
+    <h2 class="main__title" *ngIf="!myTeams">Equipes</h2>
+    <h2 class="main__title" *ngIf="myTeams">Minhas equipes</h2>
     <div class="header-buttons">
-      <button mat-raised-button color="primary">Criar equipe</button>
+      <button (click)="createTeam()"
+              mat-raised-button
+              color="primary">Criar equipe</button>
     </div>
   </div>
   <mat-card>
@@ -29,13 +32,18 @@
         <td mat-cell *matCellDef="let element"> {{element.initial_ranking.name }} </td>
       </ng-container>
 
-      <!-- Ranking -->
+      <!-- Vagas -->
       <ng-container matColumnDef="vacancies">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
-          <button [routerLink]="['/teams', element.id]"
+          <button *ngIf="element.owner !== user?.id"
+                  [routerLink]="['/teams', element.id]"
                   mat-button
                   color="primary">Vagas</button>
+          <button *ngIf="element.owner === user?.id"
+                  (click)="editTeam(element.id)"
+                  mat-button
+                  color="primary">Editar</button>
         </td>
       </ng-container>
 

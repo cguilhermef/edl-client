@@ -9,3 +9,5 @@ export * from './summoner.model';
 export * from './list-response.model';
 export * from './teams.model';
 export * from './ranking.model';
+export * from './role.model';
+export * from './vacancy.model';

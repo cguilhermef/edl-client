@@ -39,10 +39,18 @@ edl-root {
   color: mat-color($edl-client-primary);
   display: flex;
   flex: 0 0 auto;
+  flex-wrap: wrap;
   font-family: $edl-secondary-font;
   font-size: 24px;
   font-weight: 500;
   margin: 0;
+
+  .label {
+    color: gray;
+    flex: 1 0 auto;
+    font-size: 16px;
+    width: 100%;
+  }
 }
 .main__content {
   align-content: center;
@@ -50,7 +58,7 @@ edl-root {
   flex: 1 1 auto;
   flex-direction: column;
   height: 100%;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 0 auto;
   padding: 32px;
   max-width: 480px;
@@ -66,4 +74,8 @@ edl-root {
   right: 0;
   top: 0;
   z-index: 10;
+}
+
+.mat-tab-nav-bar + .form {
+  margin-top: 16px;
 }

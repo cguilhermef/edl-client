@@ -4,7 +4,9 @@
   color="primary"
   *ngIf="processing"></mat-progress-bar>
 <div class="main__content">
-  <h2 class="main__title">Login</h2>
+  <div class="main__header">
+    <h2 class="main__title">Login</h2>
+  </div>
   <mat-card>
     <form [formGroup]="form">
       <mat-grid-list cols="1" rowHeight="81px">

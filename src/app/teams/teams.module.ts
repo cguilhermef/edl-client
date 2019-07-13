@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ListComponent} from '@app/teams/containers';
+import {FormComponent, ListComponent, VacanciesComponent} from '@app/teams/containers';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatButtonModule,
@@ -9,13 +9,17 @@ import {
   MatIconModule,
   MatInputModule, MatPaginatorModule,
   MatProgressBarModule,
-  MatProgressSpinnerModule, MatSnackBarModule, MatTableModule
+  MatProgressSpinnerModule, MatSelectModule, MatSnackBarModule, MatTableModule, MatTabsModule
 } from '@angular/material';
 import {TeamsRoutingModule} from './teams-routing.module';
 
 
 @NgModule({
-  declarations: [ListComponent],
+  declarations: [
+    ListComponent,
+    FormComponent,
+    VacanciesComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -28,8 +32,10 @@ import {TeamsRoutingModule} from './teams-routing.module';
     MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     MatSnackBarModule,
     MatTableModule,
+    MatTabsModule,
     TeamsRoutingModule
   ]
 })

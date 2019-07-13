@@ -1,0 +1,56 @@
+<mat-progress-bar
+  class="progress-bar"
+  mode="indeterminate"
+  color="primary"
+  *ngIf="processing"></mat-progress-bar>
+<div class="main__content main__content--large">
+  <div class="main__header">
+    <h2 class="main__title" *ngIf="editing">
+      <div class="label">Editar equipe</div>
+      <div class="value">{{ item.name }}</div>
+    </h2>
+    <h2 class="main__title" *ngIf="!editing">Criar equipe</h2>
+  </div>
+  <mat-card>
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link [active]="true">Dados</a>
+      <a mat-tab-link
+         *ngIf="item?.id"
+         [routerLink]="['/teams', item.id, 'vacancies' ]"
+         routerLinkActive #rla="routerLinkActive"
+         [active]="rla.isActive">
+        Vagas
+      </a>
+    </nav>
+    <form [formGroup]="form" class="form">
+      <mat-grid-list cols="1" rowHeight="81px">
+        <mat-grid-tile>
+          <mat-form-field appearance="fill" class="fullwidth">
+            <mat-label>Sigla</mat-label>
+            <input matInput placeholder="(3 a 5) caracteres" formControlName="abbreviation">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill" class="fullwidth">
+            <mat-label>Nome</mat-label>
+            <input matInput placeholder="Nome da equpe" formControlName="name">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill" class="fullwidth">
+            <mat-label>Rankings</mat-label>
+            <mat-select formControlName="minRanking">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let ranking of rankings"
+                          [value]="ranking.id">{{ ranking.name }} {{ ranking.rank }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+    <mat-card-actions align="end">
+      <button mat-button [routerLink]="['/teams']" color="primary">Cancelar</button>
+      <button mat-raised-button color="primary" (click)="save()">Criar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

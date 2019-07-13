@@ -15,7 +15,7 @@ export class AuthInterceptorService implements HttpInterceptor {
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const isLoginRequest = req.url.search('auth/login') >= 0;
+    const isLoginRequest = req.url.search('login') >= 0;
     const update = {
       setHeaders: {
         Authorization: `Bearer ${ this.authService.token() }`,

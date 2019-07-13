@@ -1,0 +1,33 @@
+<mat-progress-bar
+  class="progress-bar"
+  mode="indeterminate"
+  color="primary"
+  *ngIf="processing"></mat-progress-bar>
+<div class="main__content main__content--large">
+  <div class="main__header">
+    <h2 class="main__title">
+      <div class="label">Vagas da equipe</div>
+      <div class="value">{{ item?.name }}</div>
+    </h2>
+  </div>
+  <mat-card>
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link [routerLink]="['/teams', item.id, 'edit']">Dados</a>
+      <a mat-tab-link [active]="true">Vagas</a>
+    </nav>
+    <form clas="form" [formGroup]="form">
+      <mat-grid-list>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill" class="fullwidth">
+            <mat-label>Rankings</mat-label>
+            <mat-select formControlName="minRanking">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let role of roles"
+                          [value]="role.id">{{ role.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+  </mat-card>
+</div>
